@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/LOGIN_LogoEmpresa_ImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="60dp"
+        android:contentDescription="Logo da empresa"/>
+
+    <TextView
+        android:id="@+id/LOGIN_FormTextoEmail_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LOGIN_LogoEmpresa_ImageView"
+        android:text="Email"
+        style="@style/loginTitle" />
+
+    <EditText
+        android:id="@+id/LOGIN_CampoEmailLogin_Editext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LOGIN_FormTextoEmail_TextView"
+        android:hint="exemplo@email.com"
+        style="@style/loginEditText"/>
+
+    <TextView
+        android:id="@+id/LOGIN_FormTextoSenha_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LOGIN_CampoEmailLogin_Editext"
+        android:text="Senha"
+        style="@style/loginTitle"/>
+
+
+    <EditText
+        android:id="@+id/LOGIN_CampoSenhaLogin_Editext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LOGIN_FormTextoSenha_TextView"
+        android:hint="sua senha de 8 dígitos"
+        style="@style/loginEditText"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/LOGIN_BotaoEntrar_Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LOGIN_CampoSenhaLogin_Editext"
+        style="@style/primaryButton"
+        android:text="Entrar"
+        android:layout_marginTop="35dp"
+        android:padding="13dp"
+        app:layout_constraintWidth_percent="0.7"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LOGIN_BotaoEntrar_Button"
+        android:text="Não tem uma conta ? Registre-se"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
