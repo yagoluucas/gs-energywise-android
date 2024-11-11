@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Energywise"
         tools:targetApi="31">
         <activity
-            android:name=".home_activity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
