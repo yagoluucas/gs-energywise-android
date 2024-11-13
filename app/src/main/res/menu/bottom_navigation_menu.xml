@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/Menu_NovaComunidade" android:icon="@drawable/mais" android:title="Cadastrar"/>
-    <item android:id="@+id/Menu_Comunidades" android:title="Comunidades" android:icon="@drawable/comunidade"/>
+    <item android:id="@+id/Menu_NovoCondominio" android:icon="@drawable/mais" android:title="Cadastrar"/>
+    <item android:id="@+id/Menu_Condominio" android:title="Condominios" android:icon="@drawable/comunidade"/>
     <item android:id="@+id/Menu_Perfil" android:title="Perfil" android:icon="@drawable/perfil"/>
 </menu>

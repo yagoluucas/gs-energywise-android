@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="30dp">
+
+    <TextView
+        android:id="@+id/FragmentoInfoCondominio_TextoNovaComunidade_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/loginTitle"
+        android:text="Nome do condomínio"/>
+
+    <EditText
+        android:id="@+id/FragmentoInfoCondominio_CampoNovaComunidade_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoNovaComunidade_TextView"
+        android:hint="Ex: Condomínio Vale Verde"
+        style="@style/loginEditText"
+        android:inputType="text"/>
+
+
+    <TextView
+        android:id="@+id/FragmentoInfoCondominio_TextoQtdHabitantes_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoNovaComunidade_EditText"
+        style="@style/loginTitle"
+        android:text="Quantidade de habitantes"/>
+
+    <EditText
+        android:id="@+id/FragmentoInfoCondominio_CampoQtdHabitantes_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoQtdHabitantes_TextView"
+        android:hint="Ex: 1.354"
+        style="@style/loginEditText"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:id="@+id/FragmentoInfoCondominio_TextoEnergiaConsumida_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoQtdHabitantes_EditText"
+        style="@style/loginTitle"
+        android:text="Energia consumida (kW's)"/>
+
+    <EditText
+        android:id="@+id/FragmentoInfoCondominio_CampoEnergiaConsumida_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoEnergiaConsumida_TextView"
+        android:hint="Ex: 30.000"
+        style="@style/loginEditText"
+        android:inputType="numberDecimal"/>
+
+
+    <TextView
+        android:id="@+id/FragmentoInfoCondominio_TextoEnergiaEmEstoque_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoEnergiaConsumida_EditText"
+        style="@style/loginTitle"
+        android:text="Energia em Estoque (kW's)"/>
+
+    <EditText
+        android:id="@+id/FragmentoInfoCondominio_CampoEnergiaEmEstoque_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoEnergiaEmEstoque_TextView"
+        android:hint="Ex: 10.982"
+        style="@style/loginEditText"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:id="@+id/FragmentoInfoCondominio_TextoObservacao_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoEnergiaEmEstoque_EditText"
+        style="@style/loginTitle"
+        android:text="Observação"/>
+
+    <EditText
+        android:id="@+id/FragmentoInfoCondominio_CampoObservacao_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoObservacao_TextView"
+        android:hint="Campo aberto para informações adicionais"
+        style="@style/loginEditText"
+        android:inputType="textMultiLine"
+        android:maxLength="500"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/FragmentoInfoCondominio_ButnEnviarInformacoes_AppCompatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoObservacao_EditText"
+        style="@style/primaryButton"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="15dp"
+        android:text="Enviar"
+        android:textColor="@color/black"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
