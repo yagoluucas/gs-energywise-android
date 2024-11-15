@@ -1,28 +1,31 @@
 package com.example.energywise.model
 
 class Comunidade {
-    private val nome: String
-    private val quantidadeHabitantes: Int
-    private val energiaConsumida: Int
-    private val energiaEmEstoque: Int
-    private var observacao: String? = null
+    val nome: String
+    val quantidadeHabitantes: Int
+    val energiaConsumida: Int
+    val energiaEmEstoque: Int
+    val estoqueRecomendado: Int
+    var observacao: String? = null
 
-    constructor(nome: String, quantidadeHabitantes: Int, energiaConsumida: Int, energiaEmEstoque: Int, observacao: String) {
+    constructor(nome: String, quantidadeHabitantes: Int, energiaConsumida: Int, energiaEmEstoque: Int, observacao: String, estoqueRecomendado: Int) {
         this.nome = nome
         this.quantidadeHabitantes = quantidadeHabitantes
         this.energiaConsumida = energiaConsumida
         this.energiaEmEstoque = energiaEmEstoque
+        this.estoqueRecomendado = estoqueRecomendado
         this.observacao = observacao
     }
 
-    constructor(nome: String, quantidadeHabitantes: Int, energiaConsumida: Int, energiaEmEstoque: Int) {
+    constructor(nome: String, quantidadeHabitantes: Int, energiaConsumida: Int, energiaEmEstoque: Int, estoqueRecomendado: Int) {
         this.nome = nome
         this.quantidadeHabitantes = quantidadeHabitantes
         this.energiaConsumida = energiaConsumida
+        this.estoqueRecomendado = estoqueRecomendado
         this.energiaEmEstoque = energiaEmEstoque
     }
 
     override fun toString(): String {
-        return "Comunidade(nome='$nome', quantidadeHabitantes=$quantidadeHabitantes, energiaConsumida=$energiaConsumida, energiaEmEstoque=$energiaEmEstoque, observacao=$observacao)"
+        return "Comunidade(nome='$nome', quantidadeHabitantes=$quantidadeHabitantes, energiaConsumida=$energiaConsumida, energiaEmEstoque=$energiaEmEstoque, estoqueRecomendado=$estoqueRecomendado, observacao=$observacao)"
     }
 }
