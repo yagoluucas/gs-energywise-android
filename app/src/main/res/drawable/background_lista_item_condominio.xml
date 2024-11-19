@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="40dp"/>
-    <solid android:color="#FDFDFD"/>
+    <solid android:color="@color/item_lista_condominio_background_color"/>
     <padding android:top="6dp" android:bottom="6dp" android:right="6dp" android:left="6dp"/>
 </shape>

@@ -6,27 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.energywise.R
-import com.example.energywise.model.Comunidade
+import com.example.energywise.model.Condominio
 
 class AdapterListaCondominio(
     private val context: Context,
-    private val comunidades: List<Comunidade>
+    private val condominios: List<Condominio>
 ): RecyclerView.Adapter<AdapterListaCondominio.CondominioViewHolder>() {
 
     class CondominioViewHolder(itemCondominio: View): RecyclerView.ViewHolder(itemCondominio){
-        fun vincula(comunidade: Comunidade) {
+        fun vincula(condominio: Condominio) {
             val nomeComunidade = itemView.findViewById<TextView>(R.id.ItemListaCondominio_TextNomeCondominio_TextView)
-            nomeComunidade.text = comunidade.nome
+            nomeComunidade.text = condominio.nome
             val energiaEmEstoque = itemView.findViewById<TextView>(R.id.ItemListaCondominio_TextEnergiaEstoque_TextView)
-            energiaEmEstoque.text = comunidade.energiaEmEstoque.toString().plus(" kW’s em estoque")
+            energiaEmEstoque.text = condominio.energiaEmEstoque.toString().plus(" kW’s em estoque")
             val qtdHabitantes = itemView.findViewById<TextView>(R.id.ItemListaCondominio_TextQtdHabitantes_TextView)
-            qtdHabitantes.text = comunidade.quantidadeHabitantes.toString().plus(" Habitantes")
+            qtdHabitantes.text = condominio.quantidadeHabitantes.toString().plus(" Habitantes")
             val energiaConsumida = itemView.findViewById<TextView>(R.id.ItemListaCondominio_TextEnergiaConsumida_TextView)
-            energiaConsumida.text = comunidade.energiaConsumida.toString().plus(" kW’s consumido")
+            energiaConsumida.text = condominio.energiaConsumida.toString().plus(" kW’s consumido")
             val estoqueRecomendado = itemView.findViewById<TextView>(R.id.ItemListaCondominio_TextEstoqueRecomendado_TextView)
-            estoqueRecomendado.text = comunidade.estoqueRecomendado.toString().plus(" kW’s recomendado")
+            estoqueRecomendado.text = condominio.estoqueRecomendado.toString().plus(" kW’s recomendado")
         }
     }
 
@@ -37,10 +36,10 @@ class AdapterListaCondominio(
     }
 
     override fun onBindViewHolder(holder: CondominioViewHolder, position: Int) {
-        holder.vincula(comunidades[position])
+        holder.vincula(condominios[position])
     }
 
     override fun getItemCount(): Int {
-        return comunidades.size
+        return condominios.size
     }
 }

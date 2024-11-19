@@ -27,7 +27,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:hint="Digite o nome da comunidade"
+                android:hint="Digite o nome da condominio"
                 android:drawableStart="@drawable/lupa"
                 android:drawablePadding="8dp"
                 android:layout_marginTop="25dp"
@@ -43,25 +43,37 @@
                 app:layout_constraintTop_toBottomOf="@+id/HOME_CampoPesquisarComunidade_EditText"
                 style="@style/tituloPagina"
                 android:text="Estoque crítico"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="@+id/HOME_RecyclerViewEstoqueCritico_RecyclerView"/>
 
-            <LinearLayout
-                android:id="@+id/HOME_ListaEstoqueCritico_LinearLayout"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/HOME_RecyclerViewEstoqueCritico_RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/HOME_TextoEstoqueCritico_EditText"
-                android:orientation="horizontal">
+                app:layout_constraintTop_toBottomOf="@+id/HOME_TextoEstoqueCritico_EditText"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/HOME_RecyclerViewEstoqueCritico_RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+            <TextView
+                android:id="@+id/HOME_TextoMaioresCondominios_TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HOME_RecyclerViewEstoqueCritico_RecyclerView"
+                android:text="Maiores Condomínios"
+                style="@style/tituloPagina"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="@+id/HOME_RecyclerViewMaioresCondominios_RecyclerView"/>
 
-            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/HOME_RecyclerViewMaioresCondominios_RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/HOME_TextoMaioresCondominios_TextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

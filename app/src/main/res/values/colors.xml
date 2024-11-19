@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="title_color">#01320B</color>
     <color name="primary_button_background_color">#49B02D</color>
+    <color name="item_lista_condominio_background_color">#F7F7F7</color>
 </resources>

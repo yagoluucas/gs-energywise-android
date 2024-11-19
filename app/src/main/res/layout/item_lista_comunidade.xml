@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_lista_item_condominio"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:maxWidth="350dp">
 
     <TextView
         android:id="@+id/ItemListaCondominio_TextNomeCondominio_TextView"
@@ -13,59 +14,60 @@
         android:layout_height="wrap_content"
         android:text="Condominio da paz"
         style="@style/tituloPagina"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ItemListaCondominio_InfoCondominio_LinearLayout"
+    <TextView
+        android:id="@+id/ItemListaCondominio_TextQtdHabitantes_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/habitante"
+        style="@style/textoComunidadeContainer"
+        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextNomeCondominio_TextView"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/ItemListaCondominio_TextEnergiaConsumida_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/raio"
+        style="@style/textoComunidadeContainer"
+        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextNomeCondominio_TextView"
+        app:layout_constraintLeft_toRightOf="@+id/ItemListaCondominio_TextQtdHabitantes_TextView"
+        app:layout_constraintStart_toStartOf="@+id/ItemListaCondominio_TextEstoqueRecomendado_TextView"/>
+
+    <TextView
+        android:id="@+id/ItemListaCondominio_TextEnergiaEstoque_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/bateria"
+        style="@style/textoComunidadeContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextQtdHabitantes_TextView"/>
+
+    <TextView
+        android:id="@+id/ItemListaCondominio_TextEstoqueRecomendado_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/velocimetro"
+        style="@style/textoComunidadeContainer"
+        app:layout_constraintLeft_toRightOf="@+id/ItemListaCondominio_TextEnergiaEstoque_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextEnergiaConsumida_TextView"
+        android:layout_marginLeft="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ItemListaCondominio_BtnVerDetalhes_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/ItemListaCondominio_TextNomeCondominio_TextView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="12dp">
-
-        <TextView
-            android:id="@+id/ItemListaCondominio_TextQtdHabitantes_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/habitante"
-            style="@style/textoComunidadeContainer"/>
-
-        <TextView
-            android:id="@+id/ItemListaCondominio_TextEnergiaConsumida_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/raio"
-            style="@style/textoComunidadeContainer"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ItemListaCondominio_InfoCondominio2_LinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/ItemListaCondominio_InfoCondominio_LinearLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/ItemListaCondominio_TextEnergiaEstoque_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/bateria"
-            style="@style/textoComunidadeContainer"/>
-
-        <TextView
-            android:id="@+id/ItemListaCondominio_TextEstoqueRecomendado_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/velocimetro"
-            style="@style/textoComunidadeContainer"/>
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextEstoqueRecomendado_TextView"
+        style="@style/primaryButton"
+        android:layout_marginTop="15dp"
+        android:text="Ver Detalhes"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        android:textSize="14sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
