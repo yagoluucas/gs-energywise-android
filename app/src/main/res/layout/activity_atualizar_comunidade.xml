@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,52 +7,44 @@
     tools:context=".activity.AtualizarCondominio">
 
     <ScrollView
-        android:id="@+id/ATUALIZAR_ScrollViewCadastrarComunidade_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginHorizontal="18dp">
+            android:layout_height="0dp"
+            android:paddingBottom="20dp">
 
-            <TextView
-                android:id="@+id/ATUALIZAR_TextoCadastrarComunidade_TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
+            <androidx.fragment.app.FragmentContainerView
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/fragment_close"
+                android:name="com.example.energywise.fragment.CloseFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/Atualizar_TextoAtualizarCondominio_TextView"
                 style="@style/tituloPagina"
-                android:text="Edite os campos do condomínio"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:text="Preencha as informações"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_close" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_container_info_comunidade"
+                android:name="com.example.energywise.fragment.InfoCondominio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Atualizar_TextoAtualizarCondominio_TextView"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ATUALIZAR_TextoCadastrarComunidade_TextView"
-                android:name="com.example.energywise.fragment.InfoCondominio"/>
-
-
+                app:layout_constraintRight_toRightOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:name="com.example.energywise.fragment.BottomNavigation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

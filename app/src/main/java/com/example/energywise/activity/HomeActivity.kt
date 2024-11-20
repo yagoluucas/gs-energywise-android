@@ -54,10 +54,9 @@ class HomeActivity: AppCompatActivity() {
                             condominio.get("observacao").toString(),
                         )
                     )
-
-                    recyclerViewMaioresCondominios.adapter = AdapterListaCondominio(this, geraListaMaioresCondominios(listaCondominios))
-                    recyclerViewEstoqueCritico.adapter = AdapterListaCondominio(this, geraListaCondominioComEstoqueCritico(listaCondominios))
                 }
+                recyclerViewMaioresCondominios.adapter = AdapterListaCondominio(this, geraListaMaioresCondominios(listaCondominios))
+                recyclerViewEstoqueCritico.adapter = AdapterListaCondominio(this, geraListaCondominioComEstoqueCritico(listaCondominios))
             }
             .addOnFailureListener {e ->
                 Log.v("Erro", e.toString())

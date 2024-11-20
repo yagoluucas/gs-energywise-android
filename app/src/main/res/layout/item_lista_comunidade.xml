@@ -57,18 +57,4 @@
         app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextEnergiaConsumida_TextView"
         android:layout_marginLeft="20dp"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ItemListaCondominio_BtnVerDetalhes_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ItemListaCondominio_TextEstoqueRecomendado_TextView"
-        style="@style/primaryButton"
-        android:layout_marginTop="15dp"
-        android:text="Ver Detalhes"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="10dp"
-        android:textSize="14sp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
