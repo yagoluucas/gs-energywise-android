@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.energywise.R
+import com.example.energywise.activity.NovoCondominio
 import com.example.energywise.model.Condominio
 import com.example.energywise.utils.Utils
 import com.google.firebase.FirebaseApp
@@ -36,6 +37,8 @@ class InfoCondominio : Fragment() {
         val energiaConsumida: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoEnergiaConsumida_EditText)
         val energiaEmEstoque: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoEnergiaEmEstoque_EditText)
         val observacao: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoObservacao_EditText)
+
+
 
         FirebaseApp.initializeApp(view.context)
         db = FirebaseFirestore.getInstance()
@@ -74,22 +77,43 @@ class InfoCondominio : Fragment() {
             )
 
             "%.2f".format((energiaConsumida.text.toString().toDouble() * 1.3) - energiaEmEstoque.text.toString().toDouble())
-            // Salvar no Firestore
-            db.collection("condominios")
-                .add(condominio)
-                .addOnSuccessListener { documento ->
-                    utils.criarAlerta(view.context, "Sucesso", "Sucesso ao cadastrar comunidade", 2000, R.drawable.check_circle)
 
-                    nomeCondominio.setText("")
-                    qtdHabitantes.setText("")
-                    energiaConsumida.setText("")
-                    energiaEmEstoque.setText("")
-                    observacao.setText("")
 
-                }
-                .addOnFailureListener { erro ->
-                    utils.criarAlerta(view.context, "Erro", erro.message.toString(), 2000, R.drawable.warning_circle)
-                }
+            if(requireActivity() is NovoCondominio) {
+                // Salvar no Firestore
+                db.collection("condominios")
+                    .add(condominio)
+                    .addOnSuccessListener { documento ->
+                        utils.criarAlerta(view.context, "Sucesso", "Sucesso ao cadastrar comunidade", 2000, R.drawable.check_circle)
+                        removerTextoDosCampos(nomeCondominio, qtdHabitantes, energiaConsumida, energiaEmEstoque, observacao)
+
+                    }
+                    .addOnFailureListener { erro ->
+                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), 2000, R.drawable.warning_circle)
+                    }
+            } else {
+                // atualiza os dados
+
+                val condominioAtualizado = mapOf(
+                    "nome" to condominio.nome,
+                    "quantidadeHabitantes" to condominio.quantidadeHabitantes,
+                    "energiaConsumida" to condominio.energiaConsumida,
+                    "energiaEmEstoque" to condominio.energiaEmEstoque,
+                    "observacao" to condominio.observacao,
+                    "estoqueRecomendado" to condominio.estoqueRecomendado
+                )
+
+                val idCondominioAntigo: String = if (arguments?.getString("id")?.isNotEmpty() == true) arguments?.getString("id")!! else ""
+                Log.v("id", idCondominioAntigo)
+                db.collection("condominios")
+                    .document(idCondominioAntigo).update(condominioAtualizado)
+                    .addOnSuccessListener {
+                        utils.criarAlerta(view.context, "Sucesso", "Condomínio atualizado com sucesso", 2000, R.drawable.check_circle)
+                        removerTextoDosCampos(nomeCondominio, qtdHabitantes, energiaConsumida, energiaEmEstoque, observacao)
+                    }.addOnFailureListener { erro ->
+                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), 2000, R.drawable.warning_circle)
+                    }
+            }
         }
 
         return view
@@ -105,5 +129,19 @@ class InfoCondominio : Fragment() {
                 qtdHabitantes.text.toString().toIntOrNull() != null &&
                 energiaConsumida.text.toString().toDoubleOrNull() != null &&
                 energiaEmEstoque.text.toString().toDoubleOrNull() != null
+    }
+
+    fun removerTextoDosCampos(
+        nomeCondominio: EditText,
+        qtdHabitantes: EditText,
+        energiaConsumida: EditText,
+        energiaEmEstoque: EditText,
+        observacao: EditText
+    ){
+        nomeCondominio.setText("")
+        qtdHabitantes.setText("")
+        energiaConsumida.setText("")
+        energiaEmEstoque.setText("")
+        observacao.setText("")
     }
 }
