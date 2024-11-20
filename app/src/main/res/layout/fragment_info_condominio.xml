@@ -18,7 +18,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_TextoNovaComunidade_TextView"
-        android:id="@+id/FragmentoInfoCondominio_CampoNovaComunidade_EditText"
+        android:id="@+id/FragmentoInfoCondominio_CampoNomeComunidade_EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ex: Condomínio Vale Verde"
@@ -28,7 +28,7 @@
     <TextView
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoNovaComunidade_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/FragmentoInfoCondominio_CampoNomeComunidade_EditText"
         android:id="@+id/FragmentoInfoCondominio_TextoQtdHabitantes_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ex: 1.354"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         style="@style/loginEditText" />
 
     <TextView
