@@ -21,7 +21,7 @@ class HomeActivity: AppCompatActivity() {
 
     private var db = Firebase.firestore
 
-    private val listaComunidade: MutableList<Condominio> = mutableListOf()
+    private val listaCondominios: MutableList<Condominio> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +41,9 @@ class HomeActivity: AppCompatActivity() {
                 get()
             .addOnSuccessListener { resultado ->
                 for (condominio in resultado) {
-                    listaComunidade.add(
+                    listaCondominios.add(
                         Condominio(
+                            condominio.id,
                             condominio.get("nome").toString(),
                             condominio.get("quantidadeHabitantes").toString().toInt(),
                             condominio.get("energiaConsumida").toString().toDouble(),
@@ -53,8 +54,8 @@ class HomeActivity: AppCompatActivity() {
                         )
                     )
 
-                    recyclerViewMaioresCondominios.adapter = AdapterListaCondominio(this, listaComunidade)
-                    recyclerViewEstoqueCritico.adapter = AdapterListaCondominio(this, listaComunidade)
+                    recyclerViewMaioresCondominios.adapter = AdapterListaCondominio(this, geraListaMaioresCondominios(listaCondominios))
+                    recyclerViewEstoqueCritico.adapter = AdapterListaCondominio(this, geraListaCondominioComEstoqueCritico(listaCondominios))
                 }
             }
             .addOnFailureListener {e ->
@@ -64,5 +65,21 @@ class HomeActivity: AppCompatActivity() {
         pesquisarComunidade.clearFocus()
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
+
+    fun geraListaMaioresCondominios(listaCondominios: MutableList<Condominio>): MutableList<Condominio>{
+        val condominiosOrdenados = listaCondominios.sortedByDescending { condominio: Condominio -> condominio.quantidadeHabitantes}.toMutableList()
+
+        return if (condominiosOrdenados.size >= 5) condominiosOrdenados.subList(0, 5) else condominiosOrdenados
+    }
+
+    fun geraListaCondominioComEstoqueCritico(listaCondominios: MutableList<Condominio>): MutableList<Condominio> {
+        // Seleciona todos os condominios que o estoque está menor que 30% do recomendado
+
+        val condominiosOrdenados: MutableList<Condominio> = mutableListOf()
+        listaCondominios.forEach{ condominio: Condominio ->
+            if(condominio.energiaEmEstoque < (condominio.estoqueRecomendado * 0.3)) condominiosOrdenados.add(condominio)
+        }
+        return condominiosOrdenados
     }
 }
