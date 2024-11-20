@@ -12,8 +12,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.energywise.R
 import com.example.energywise.model.Condominio
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 
 class DetalhesComunidade : AppCompatActivity() {
+    private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_comunidade)
@@ -40,6 +43,10 @@ class DetalhesComunidade : AppCompatActivity() {
             val intent = Intent(this, AtualizarCondominio::class.java)
             intent.putExtra("condominio", condominio)
             startActivity(intent)
+        }
+
+        btnExcluir.setOnClickListener {
+
         }
     }
 }

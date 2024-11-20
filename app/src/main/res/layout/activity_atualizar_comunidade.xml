@@ -22,7 +22,8 @@
                 android:id="@+id/fragment_close"
                 android:name="com.example.energywise.fragment.CloseFragment"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"/>
 
             <TextView
                 android:id="@+id/Atualizar_TextoAtualizarCondominio_TextView"

@@ -13,7 +13,7 @@
         android:id="@+id/fragment_close"
         android:name="com.example.energywise.fragment.CloseFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/DetalhesComunidade_NomeComunidade_TextView"

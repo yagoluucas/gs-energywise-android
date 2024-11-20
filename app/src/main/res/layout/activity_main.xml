@@ -73,6 +73,7 @@
         app:layout_constraintWidth_percent="0.7"/>
 
     <TextView
+        android:id="@+id/LOGIN_TextoCriarConta_TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
