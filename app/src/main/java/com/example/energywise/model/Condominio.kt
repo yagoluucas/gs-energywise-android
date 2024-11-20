@@ -1,6 +1,7 @@
 package com.example.energywise.model
 
 import com.google.firebase.Timestamp
+import java.io.Serializable
 
 data class Condominio(
     var id: String = "",
@@ -9,9 +10,9 @@ data class Condominio(
     var energiaConsumida: Double = 0.0,
     var energiaEmEstoque: Double = 0.0,
     var estoqueRecomendado: Double = 0.0,
-    var dataMedicao: Any? = Timestamp.now(),
+    @Transient var dataMedicao: Any? = Timestamp.now(),
     var observacao: String? = ""
-) {
+): Serializable {
     constructor(nome: String, quantidadeHabitantes: Int, energiaConsumida: Double, energiaEmEstoque: Double, estoqueRecomendado: Double, observacao: String?) : this() {
         this.nome = nome
         this.quantidadeHabitantes = quantidadeHabitantes

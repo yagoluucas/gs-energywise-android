@@ -34,6 +34,7 @@ class HomeActivity: AppCompatActivity() {
         recyclerViewMaioresCondominios.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewEstoqueCritico.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+
         FirebaseApp.initializeApp(this)
         db = FirebaseFirestore.getInstance()
 
