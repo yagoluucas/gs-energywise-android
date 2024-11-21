@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.energywise.R
-import com.example.energywise.activity.DetalhesComunidade
+import com.example.energywise.activity.DetalhesCondominio
 import com.example.energywise.model.Condominio
-import java.util.concurrent.locks.Condition
 
 class AdapterListaCondominio(
     private val context: Context,
@@ -32,7 +31,7 @@ class AdapterListaCondominio(
             estoqueRecomendado.text = condominio.estoqueRecomendado.toString().plus(" kW’s recomendado")
 
             itemView.setOnClickListener{
-                val intent = Intent(context, DetalhesComunidade::class.java)
+                val intent = Intent(context, DetalhesCondominio::class.java)
                 intent.putExtra("condominio", condominio)
                 context.startActivity(intent)
             }

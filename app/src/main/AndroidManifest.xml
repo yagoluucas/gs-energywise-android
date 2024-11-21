@@ -20,7 +20,7 @@
             android:name=".activity.CriarConta"
             android:exported="false" />
         <activity
-            android:name=".activity.DetalhesComunidade"
+            android:name=".activity.DetalhesCondominio"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.PerfilUsuario"

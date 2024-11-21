@@ -14,15 +14,21 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.energywise.activity.CriarConta
 import com.example.energywise.activity.HomeActivity
 import com.example.energywise.model.Usuario
+import com.example.energywise.utils.Utils
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private var db = Firebase.firestore
+    private val utils = Utils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,28 +50,36 @@ class MainActivity : AppCompatActivity() {
 
 
         botaoEntrar.setOnClickListener{
-
+            val tempo: Long = 2000
 
             db.collection("usuarios")
                 .whereEqualTo("email", campoEmail.text.toString())
                 .get()
                 .addOnSuccessListener { querySnapshot ->
                     if (!querySnapshot.isEmpty) {
-                        // O usuário existe
-
+                        val senhaDigitada = campoSenha.text.toString()
                         val usuario = querySnapshot.documents[0].toObject<Usuario>()
-                        Log.d("VerificarUsuario", "Usuário encontrado: ${usuario?.nome}")
+
+                        if(senhaDigitada == usuario?.senha){
+                            utils.criarAlerta(this, "Bem-Vindo", "Login feito com sucesso", tempo, R.drawable.check_circle)
+                            val intent = Intent(this, HomeActivity::class.java)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                delay(tempo)
+                                startActivity(intent)
+                            }
+                        } else {
+                            utils.criarAlerta(this, "Falha", "Senha incorreta", tempo, R.drawable.warning_circle)
+                        }
+
+
                     } else {
                         // O usuário não existe
-                        Log.d("VerificarUsuario", "Usuário não encontrado.")
+                        utils.criarAlerta(this, "Falha", "Usuário não encontrado", tempo, R.drawable.warning_circle)
                     }
                 }
                 .addOnFailureListener { e ->
-                    Log.e("VerificarUsuario", "Erro ao verificar usuário: ", e)
+                    utils.criarAlerta(this, "Falha", "Erro ao recuperar usuário", tempo, R.drawable.warning_circle)
                 }
-
-//            val intent = Intent(this, HomeActivity::class.java)
-//            startActivity(intent)
         }
 
         textoCriarConta.setOnClickListener {
@@ -74,4 +88,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }

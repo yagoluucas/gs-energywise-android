@@ -1,0 +1,56 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/DialogConfirmacao_TextoConfirma_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirma a exclusão do condomínio?"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/DialogConfirmacao_TextoInfoExclusao_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Todos os dados, histórico e informações da comunidade será excluído permanentemente"
+        android:textSize="14sp"
+        android:textColor="#5A5A5A"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/DialogConfirmacao_BotaoConfirma_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Confirmar"
+            android:textColor="#FFF"
+            android:backgroundTint="#4CAF50" />
+
+        <Button
+            android:id="@+id/DialogConfirmacao_BotaoCancelar_Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:textColor="#FFF"
+            android:backgroundTint="#F44336" />
+
+    </LinearLayout>
+</LinearLayout>
