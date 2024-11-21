@@ -36,7 +36,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LOGIN_FormTextoEmail_TextView"
         android:hint="exemplo@email.com"
-        style="@style/loginEditText"/>
+        style="@style/loginEditText"
+        android:inputType="textEmailAddress"/>
 
     <TextView
         android:id="@+id/LOGIN_FormTextoSenha_TextView"
@@ -57,7 +58,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LOGIN_FormTextoSenha_TextView"
         android:hint="sua senha de 8 dígitos"
-        style="@style/loginEditText"/>
+        style="@style/loginEditText"
+        android:inputType="textPassword"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/LOGIN_BotaoEntrar_Button"

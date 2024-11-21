@@ -33,15 +33,14 @@
 
     <EditText
         android:id="@+id/CadastrarUsuario_CampoNome_EditText"
+        style="@style/loginEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+        android:hint="Seu nome completo"
+        android:inputType="text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CadastrarUsuario_TextoNome_TextView"
-        style="@style/loginEditText"
-        android:hint="Seu nome completo"/>
+        app:layout_constraintTop_toBottomOf="@+id/CadastrarUsuario_TextoNome_TextView" />
 
 
     <TextView
@@ -60,7 +59,6 @@
         android:id="@+id/CadastrarUsuario_CampoEmail_EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -84,15 +82,14 @@
 
     <EditText
         android:id="@+id/CadastrarUsuario_CampoSenha_EditText"
+        style="@style/loginEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+        android:hint="Pelo menos 8 dígitos"
+        android:inputType="text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CadastrarUsuario_TextoSenha_TextView"
-        style="@style/loginEditText"
-        android:hint="Pelo menos 8 dígitos"/>
+        app:layout_constraintTop_toBottomOf="@+id/CadastrarUsuario_TextoSenha_TextView" />
 
 
     <androidx.appcompat.widget.AppCompatButton
