@@ -99,7 +99,35 @@ class DetalhesCondominio : AppCompatActivity() {
         dialog.show()
     }
 
-    fun excluirCondominio(db:FirebaseFirestore, condiminioId: String) {
+    fun excluirCondominio(db: FirebaseFirestore, condominioId: String) {
+        val tempo: Long = 3000
 
+        db.collection("condominios")
+            .document(condominioId)
+            .delete()
+            .addOnSuccessListener {
+                utils.criarAlerta(
+                    this,
+                    "Sucesso",
+                    "Comunidade excluída com sucesso",
+                    tempo,
+                    R.drawable.check_circle
+                )
+                val intent = Intent(this, HomeActivity::class.java)
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(tempo)
+                    startActivity(intent)
+                }
+            }
+            .addOnFailureListener {
+                utils.criarAlerta(
+                    this,
+                    "Erro",
+                    "Erro ao excluir comunidade",
+                    tempo,
+                    R.drawable.warning_circle
+                )
+            }
     }
+
 }

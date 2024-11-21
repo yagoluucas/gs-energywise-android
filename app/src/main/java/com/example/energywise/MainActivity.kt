@@ -89,4 +89,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun validaSeCamposEstaoPreenchidos(campo: EditText): Boolean{
+        if(campo.text.isBlank()){
+            campo.error = "Este Campo precisa ser preenchido"
+            return false
+        }
+        return true
+    }
+
 }
