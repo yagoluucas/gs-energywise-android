@@ -79,6 +79,11 @@ A prototipagem foi feita utilizando a ferramenta FIGMA.
 
 [Link do Protótipo](https://www.figma.com/files/team/1436703605828537457/project/299832420/Team-project?fuid=1275982344735340604)
 
+## 🎥 Apresentação do App
+Apresentamos o nosso app mostrando todas as funcionalidades dele.
+
+[Link do vídeo](https://www.youtube.com/watch?v=YsShtt6mVTE)
+
 ## 🤝 Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
