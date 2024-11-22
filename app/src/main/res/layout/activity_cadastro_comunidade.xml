@@ -10,15 +10,15 @@
     <ScrollView
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content">
+        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="85dp">
+            android:paddingBottom="20dp">
 
             <TextView
                 android:id="@+id/CADASTRO_TextoCadastrarComunidade_TextView"

@@ -1,5 +1,6 @@
 package com.example.energywise.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.energywise.R
+import com.example.energywise.activity.DetalhesCondominio
 import com.example.energywise.activity.NovoCondominio
 import com.example.energywise.model.Condominio
 import com.example.energywise.utils.Utils
@@ -18,6 +20,10 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class InfoCondominio : Fragment() {
 
@@ -37,8 +43,6 @@ class InfoCondominio : Fragment() {
         val energiaConsumida: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoEnergiaConsumida_EditText)
         val energiaEmEstoque: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoEnergiaEmEstoque_EditText)
         val observacao: EditText = view.findViewById(R.id.FragmentoInfoCondominio_CampoObservacao_EditText)
-
-
 
         FirebaseApp.initializeApp(view.context)
         db = FirebaseFirestore.getInstance()
@@ -64,9 +68,10 @@ class InfoCondominio : Fragment() {
 
         btnEnviarInformacoes.setOnClickListener {
 
+            val tempo: Long = 2000
+
             val estoqueRecomendado = "%.2f".format((energiaConsumida.text.toString().toDouble() * 1.3) - energiaEmEstoque.text.toString().toDouble()).replace(",", ".").toDouble()
 
-            // Envia informações apenas se os campos forem válidos
             val condominio = Condominio(
                 nome = nomeCondominio.text.toString(),
                 quantidadeHabitantes = qtdHabitantes.text.toString().toInt(),
@@ -76,23 +81,21 @@ class InfoCondominio : Fragment() {
                 estoqueRecomendado = if (estoqueRecomendado < 0) energiaEmEstoque.text.toString().toDouble() else estoqueRecomendado
             )
 
-            "%.2f".format((energiaConsumida.text.toString().toDouble() * 1.3) - energiaEmEstoque.text.toString().toDouble())
-
 
             if(requireActivity() is NovoCondominio) {
-                // Salvar no Firestore
+                // Salvar no Firestore se estiver na novo condominio
                 db.collection("condominios")
                     .add(condominio)
                     .addOnSuccessListener { documento ->
-                        utils.criarAlerta(view.context, "Sucesso", "Sucesso ao cadastrar comunidade", 2000, R.drawable.check_circle)
+                        utils.criarAlerta(view.context, "Sucesso", "Sucesso ao cadastrar comunidade", tempo, R.drawable.check_circle)
                         removerTextoDosCampos(nomeCondominio, qtdHabitantes, energiaConsumida, energiaEmEstoque, observacao)
 
                     }
                     .addOnFailureListener { erro ->
-                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), 2000, R.drawable.warning_circle)
+                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), tempo, R.drawable.warning_circle)
                     }
             } else {
-                // atualiza os dados
+                // atualiza os dados se estiver em atualizar condominio
 
                 val condominioAtualizado = mapOf(
                     "nome" to condominio.nome,
@@ -104,14 +107,24 @@ class InfoCondominio : Fragment() {
                 )
 
                 val idCondominioAntigo: String = if (arguments?.getString("id")?.isNotEmpty() == true) arguments?.getString("id")!! else ""
-                Log.v("id", idCondominioAntigo)
+
                 db.collection("condominios")
-                    .document(idCondominioAntigo).update(condominioAtualizado)
+                    .document(idCondominioAntigo)
+                    .update(condominioAtualizado)
                     .addOnSuccessListener {
-                        utils.criarAlerta(view.context, "Sucesso", "Condomínio atualizado com sucesso", 2000, R.drawable.check_circle)
-                        removerTextoDosCampos(nomeCondominio, qtdHabitantes, energiaConsumida, energiaEmEstoque, observacao)
+                        utils.criarAlerta(view.context, "Sucesso", "Condomínio atualizado com sucesso", tempo, R.drawable.check_circle)
+
+                        val intent = Intent(activity, DetalhesCondominio::class.java)
+                        condominio.id = idCondominioAntigo
+                        intent.putExtra("condominio", condominio)
+
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(tempo)
+                            startActivity(intent)
+                        }
+
                     }.addOnFailureListener { erro ->
-                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), 2000, R.drawable.warning_circle)
+                        utils.criarAlerta(view.context, "Erro", erro.message.toString(), tempo, R.drawable.warning_circle)
                     }
             }
         }

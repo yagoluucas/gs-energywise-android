@@ -22,8 +22,6 @@ class AtualizarCondominio : AppCompatActivity() {
             .replace(R.id.fragment_close, fragmentClose)
             .commit()
 
-
-
         val fragmentInfoCondominio = InfoCondominio()
         val bundleInfoCondominio = Bundle()
         bundleInfoCondominio.putString("id", condominio?.id)

@@ -109,7 +109,7 @@ class DetalhesCondominio : AppCompatActivity() {
                 utils.criarAlerta(
                     this,
                     "Sucesso",
-                    "Comunidade excluída com sucesso",
+                    "Condominio excluída com sucesso",
                     tempo,
                     R.drawable.check_circle
                 )
@@ -123,7 +123,7 @@ class DetalhesCondominio : AppCompatActivity() {
                 utils.criarAlerta(
                     this,
                     "Erro",
-                    "Erro ao excluir comunidade",
+                    "Erro ao excluir Condominio",
                     tempo,
                     R.drawable.warning_circle
                 )

@@ -1,8 +1,6 @@
 package com.example.energywise.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -12,30 +10,32 @@ import com.example.energywise.R
 import com.example.energywise.model.Condominio
 import com.example.energywise.recyclerview.AdapterListaCondominio
 import com.example.energywise.utils.Utils
-import com.google.api.Distribution.BucketOptions.Linear
 import com.google.firebase.FirebaseApp
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
-class HomeActivity: AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private var db = Firebase.firestore
     private val listaCondominios: MutableList<Condominio> = mutableListOf()
     private val utils: Utils = Utils()
 
-    @SuppressLint("MissingInflatedId")
+    private lateinit var recyclerViewEstoqueCritico: RecyclerView
+    private lateinit var recyclerViewMaioresCondominios: RecyclerView
+    private lateinit var recyclerViewMaioresConsumos: RecyclerView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         val pesquisarComunidade: EditText = findViewById(R.id.HOME_CampoPesquisarComunidade_EditText)
 
-        val recyclerViewEstoqueCritico: RecyclerView = findViewById(R.id.HOME_RecyclerViewEstoqueCritico_RecyclerView)
-        val recyclerViewMaioresCondominios: RecyclerView = findViewById(R.id.HOME_RecyclerViewMaioresCondominios_RecyclerView)
-        val recyclerViewMaioresConsumos: RecyclerView = findViewById(R.id.HOME_RecyclerViewMaioresConsumos_RecyclerView)
+        recyclerViewEstoqueCritico = findViewById(R.id.HOME_RecyclerViewEstoqueCritico_RecyclerView)
+        recyclerViewMaioresCondominios = findViewById(R.id.HOME_RecyclerViewMaioresCondominios_RecyclerView)
+        recyclerViewMaioresConsumos = findViewById(R.id.HOME_RecyclerViewMaioresConsumos_RecyclerView)
 
         recyclerViewMaioresCondominios.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewEstoqueCritico.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -44,8 +44,20 @@ class HomeActivity: AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         db = FirebaseFirestore.getInstance()
 
-        db.collection("condominios").
-                get()
+        pesquisarComunidade.clearFocus()
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        carregarDados()
+    }
+
+    private fun carregarDados() {
+        listaCondominios.clear() // Limpa a lista para evitar duplicação dos dados
+        db.collection("condominios")
+            .get()
             .addOnSuccessListener { resultado ->
                 for (condominio in resultado) {
                     listaCondominios.add(
@@ -66,34 +78,27 @@ class HomeActivity: AppCompatActivity() {
                 recyclerViewEstoqueCritico.adapter = AdapterListaCondominio(this, geraListaCondominioComEstoqueCritico(listaCondominios))
                 recyclerViewMaioresConsumos.adapter = AdapterListaCondominio(this, geraListaCondominioComMaioresConsumos(listaCondominios))
             }
-            .addOnFailureListener {e ->
+            .addOnFailureListener { e ->
                 utils.criarAlerta(this, "Erro", "Erro ao recuperar lista: $e", 3000, R.drawable.warning_circle)
             }
-
-        pesquisarComunidade.clearFocus()
-
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }
 
-
-    fun geraListaMaioresCondominios(listaCondominios: MutableList<Condominio>): MutableList<Condominio>{
-        val condominiosOrdenados = listaCondominios.sortedByDescending { condominio: Condominio -> condominio.quantidadeHabitantes}.toMutableList()
+    fun geraListaMaioresCondominios(listaCondominios: MutableList<Condominio>): MutableList<Condominio> {
+        val condominiosOrdenados = listaCondominios.sortedByDescending { condominio: Condominio -> condominio.quantidadeHabitantes }.toMutableList()
 
         return if (condominiosOrdenados.size >= 5) condominiosOrdenados.subList(0, 5) else condominiosOrdenados
     }
 
     fun geraListaCondominioComEstoqueCritico(listaCondominios: MutableList<Condominio>): MutableList<Condominio> {
-        // Seleciona todos os condominios que o estoque está menor que 30% do recomendado
-
         val condominiosOrdenados: MutableList<Condominio> = mutableListOf()
-        listaCondominios.forEach{ condominio: Condominio ->
-            if(condominio.energiaEmEstoque < (condominio.estoqueRecomendado * 0.3)) condominiosOrdenados.add(condominio)
+        listaCondominios.forEach { condominio: Condominio ->
+            if (condominio.energiaEmEstoque < (condominio.estoqueRecomendado * 0.3)) condominiosOrdenados.add(condominio)
         }
         return condominiosOrdenados
     }
 
     fun geraListaCondominioComMaioresConsumos(listaCondominios: MutableList<Condominio>): MutableList<Condominio> {
-        val condiminiosOrdernados = listaCondominios.sortedByDescending { condominio: Condominio -> condominio.energiaConsumida}.toMutableList()
-        return if (condiminiosOrdernados.size >= 5) condiminiosOrdernados.subList(0, 5) else condiminiosOrdernados
+        val condominiosOrdenados = listaCondominios.sortedByDescending { condominio: Condominio -> condominio.energiaConsumida }.toMutableList()
+        return if (condominiosOrdenados.size >= 5) condominiosOrdenados.subList(0, 5) else condominiosOrdenados
     }
 }
